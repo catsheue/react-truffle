@@ -8,6 +8,8 @@ import {
 import { ReactComponent as Logo } from "./styles/svg/logo.svg";
 import styled from "styled-components";
 import FetchTaiwanNews from "./components/FetchTaiwanNews";
+import {CheckboxRadioExample} from "./components/CheckboxList";
+
 const Header = styled.header`
   background: #242526;
   color: white;
@@ -99,6 +101,9 @@ export default function App() {
                 <NavLink to="/">Home</NavLink>
               </li>
               <li>
+                <NavLink to="/checkboxlist">Checkbox list</NavLink>
+              </li>
+              <li>
                 <NavLink to="/fetchTaiwanNews">fetch API by useEffect</NavLink>
               </li>
               <li>
@@ -108,6 +113,9 @@ export default function App() {
           </ContentNav>
           <Content>
             <Switch>
+              <Route path="/checkboxlist">
+                <CheckboxRadioExample />
+              </Route>
               <Route path="/fetchTaiwanNews">
                 <FetchTaiwanNews />
               </Route>
