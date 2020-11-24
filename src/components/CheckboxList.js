@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const checkboxesList = [
   'New Jersey',
+  'New York',
   'Maryland',
   'Connecticut',
   'Florida',
