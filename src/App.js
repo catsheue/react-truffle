@@ -8,7 +8,6 @@ import {
 import { ReactComponent as Logo } from "./styles/svg/logo.svg";
 import styled from "styled-components";
 import FetchTaiwanNews from "./components/FetchTaiwanNews";
-import { CheckboxRadioExample } from "./components/CheckboxList";
 import FetchCheckboxRadioExample from "./components/FetchCheckboxList";
 
 const Header = styled.header`
@@ -115,7 +114,6 @@ export default function App() {
           <Content>
             <Switch>
               <Route path="/checkboxlist">
-                {/*<CheckboxRadioExample />*/}
                 <FetchCheckboxRadioExample />
               </Route>
               <Route path="/fetchTaiwanNews">
