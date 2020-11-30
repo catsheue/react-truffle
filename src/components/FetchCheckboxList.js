@@ -1,25 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-const checkboxesList = [
-  'New Jersey',
-  'New York',
-  'Maryland',
-  'Connecticut',
-  'Florida',
-  'Massachussets',
-];
-
-const getDefaultCheckboxes = () =>
-  checkboxesList.map(checkbox => ({
-    name: checkbox,
-    checked: false,
-  }));
-
 export function useCheckboxes(defaultCheckboxes) {
-  const [checkboxes, setCheckboxes] = useState(
-    defaultCheckboxes || getDefaultCheckboxes(),
-  );
+  useEffect(() => {
+    setCheckboxes(defaultCheckboxes);
+  }, [defaultCheckboxes]);
+  const [checkboxes, setCheckboxes] = useState(defaultCheckboxes);
   function setCheckbox(index, checked) {
     const newCheckboxes = [...checkboxes];
     newCheckboxes[index].checked = checked;
@@ -39,6 +25,13 @@ const CheckboxLabel = styled.label`
   display: block;
   font-weight: normal;
 `;
+
+const FetchButton = styled.div`
+  padding: 1rem;
+  background: teal;
+  cursor: pointer;
+  color: #fff;
+`;
 export function Checkboxes({ checkboxes, setCheckbox }) {
   return (
     <>
@@ -47,7 +40,7 @@ export function Checkboxes({ checkboxes, setCheckbox }) {
           <Checkbox
             type="checkbox"
             checked={checkbox.checked}
-            onChange={e => {
+            onChange={(e) => {
               setCheckbox(i, e.target.checked);
             }}
           />
@@ -57,19 +50,35 @@ export function Checkboxes({ checkboxes, setCheckbox }) {
     </>
   );
 }
-export function CheckboxRadioExample() {
-  const list = [{name:'luna'}, {name: 'fat'}];
+
+export default function FetchCheckboxRadioExample() {
+  const [list, setList] = useState([]);
   const checkboxes = useCheckboxes(list);
 
+  const getData = async () => {
+    try {
+      const res = await fetch("https://swapi.dev/api/people/");
+      const json = await res.json();
+      if (json.results) {
+        console.log(json.results);
+        setList(json.results);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
   return (
     <div>
+      <FetchButton onClick={() => getData()}>
+        Click me to fetch list
+      </FetchButton>
       <Checkboxes {...checkboxes} />
       <span>
         Value:
         {checkboxes.checkboxes
-          .filter(t => t.checked)
-          .map(checkbox => checkbox.name)
-          .join(', ')}
+          .filter((t) => t.checked)
+          .map((checkbox) => checkbox.name)
+          .join(", ")}
       </span>
     </div>
   );
