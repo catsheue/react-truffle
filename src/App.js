@@ -107,7 +107,7 @@ export default function App() {
                 <NavLink to="/fetchTaiwanNews">fetch API by useEffect</NavLink>
               </li>
               <li>
-                <NavLink to="/users">Users</NavLink>
+                <NavLink to="/sort">Users</NavLink>
               </li>
             </ul>
           </ContentNav>
@@ -119,7 +119,7 @@ export default function App() {
               <Route path="/fetchTaiwanNews">
                 <FetchTaiwanNews />
               </Route>
-              <Route path="/users">
+              <Route path="/sort">
                 <Users />
               </Route>
               <Route path="/">
@@ -137,6 +137,82 @@ function Home() {
   return <h2>Home</h2>;
 }
 
+const propComparator = (propName, bool) => {
+  // asc
+  if (bool)
+    return (a, b) => {
+      if (
+        !a[propName] ||
+        !b[propName] ||
+        a[propName] === "" ||
+        b[propName] === ""
+      )
+        return -1;
+      if (a[propName].toUpperCase() < b[propName].toUpperCase()) return 1;
+      if (a[propName].toUpperCase() > b[propName].toUpperCase()) return 0;
+    };
+
+  // desc
+  return (a, b) => {
+    if (
+      !a[propName] ||
+      !b[propName] ||
+      a[propName] === "" ||
+      b[propName] === ""
+    )
+      return 1;
+    if (a[propName].toUpperCase() < b[propName].toUpperCase()) return -1;
+    if (a[propName].toUpperCase() > b[propName].toUpperCase()) return 0;
+  };
+};
+
 function Users() {
-  return <h2>Users</h2>;
+  const list = [
+    { name: "Luna", fat: true },
+    { name: "", fat: true },
+    { name: "", fat: true },
+    { name: null, fat: true },
+    { name: null, fat: false },
+    { name: null, fat: false },
+    { name: "Test", fat: true },
+    { name: "Miou", fat: true },
+    { name: "Mimosa", fat: false },
+    { name: "Elsa", fat: true },
+  ];
+
+  const [sortList, setSortList] = useState(list);
+  const [sortName, setSortName] = useState(false);
+
+  useEffect(() => {
+    const newList = [].concat(sortList);
+    const list = newList.sort(propComparator("name", sortName));
+    setSortList(list);
+  }, [sortName]);
+
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th>
+            name{" "}
+            <button onClick={() => setSortName((prevState) => !prevState)}>
+              sort!
+            </button>
+          </th>
+          <th>fat</th>
+        </tr>
+      </thead>
+      <tbody>
+        {sortList.map((item, index) => {
+          const { name, fat } = item;
+          return (
+            <tr key={index}>
+              <td>{name}</td>
+              <td>{fat ? "true" : "false"}</td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  );
 }
