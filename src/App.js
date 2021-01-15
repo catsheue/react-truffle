@@ -9,6 +9,10 @@ import { ReactComponent as Logo } from "./styles/svg/logo.svg";
 import styled from "styled-components";
 import FetchTaiwanNews from "./components/FetchTaiwanNews";
 import FetchCheckboxRadioExample from "./components/FetchCheckboxList";
+import RenderCount from "./components/RenderCount";
+import PreviousValue from "./components/PreviousValue";
+import ControlledComponents from "./components/ControlledComponents";
+import Users from "./components/Users";
 
 const Header = styled.header`
   background: #242526;
@@ -37,7 +41,7 @@ const FlexUl = styled.ul`
       display: block;
       padding: 1rem;
       color: white;
-      font-size: 1.6rem;
+      font-size: 2rem;
     }
   }
 `;
@@ -49,10 +53,11 @@ const ContentWrapper = styled.div`
   flex-direction: row;
   background: #18191a;
   color: #fff;
+  font-size: 1.3rem;
 `;
 
 const ContentNav = styled.nav`
-  width: 45vw;
+  width: 20vw;
 
   ul {
     list-style: none;
@@ -60,7 +65,7 @@ const ContentNav = styled.nav`
       a {
         padding: 1rem;
         display: block;
-        font-size: 2rem;
+
         color: #fff;
       }
     }
@@ -70,6 +75,10 @@ const ContentNav = styled.nav`
 const Content = styled.div`
   padding: 1rem;
   min-height: 80vh;
+  width: 80vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export default function App() {
@@ -101,10 +110,19 @@ export default function App() {
                 <NavLink to="/">Home</NavLink>
               </li>
               <li>
+                <NavLink to="/previousValue">Previous Value</NavLink>
+              </li>
+              <li>
+                <NavLink to="/rendercount">RenderCount by useRef</NavLink>
+              </li>
+              <li>
                 <NavLink to="/checkboxlist">Checkbox list</NavLink>
               </li>
               <li>
                 <NavLink to="/fetchTaiwanNews">fetch API by useEffect</NavLink>
+              </li>
+              <li>
+                <NavLink to="/controlled">Controlled Components</NavLink>
               </li>
               <li>
                 <NavLink to="/sort">Users</NavLink>
@@ -113,6 +131,12 @@ export default function App() {
           </ContentNav>
           <Content>
             <Switch>
+              <Route path="/previousValue">
+                <PreviousValue />
+              </Route>
+              <Route path="/rendercount">
+                <RenderCount />
+              </Route>
               <Route path="/checkboxlist">
                 <FetchCheckboxRadioExample />
               </Route>
@@ -121,6 +145,9 @@ export default function App() {
               </Route>
               <Route path="/sort">
                 <Users />
+              </Route>
+              <Route path="/controlled">
+                <ControlledComponents />
               </Route>
               <Route path="/">
                 <Home />
@@ -135,84 +162,4 @@ export default function App() {
 
 function Home() {
   return <h2>Home</h2>;
-}
-
-const propComparator = (propName, bool) => {
-  // asc
-  if (bool)
-    return (a, b) => {
-      if (
-        !a[propName] ||
-        !b[propName] ||
-        a[propName] === "" ||
-        b[propName] === ""
-      )
-        return -1;
-      if (a[propName].toUpperCase() < b[propName].toUpperCase()) return 1;
-      if (a[propName].toUpperCase() > b[propName].toUpperCase()) return 0;
-    };
-
-  // desc
-  return (a, b) => {
-    if (
-      !a[propName] ||
-      !b[propName] ||
-      a[propName] === "" ||
-      b[propName] === ""
-    )
-      return 1;
-    if (a[propName].toUpperCase() < b[propName].toUpperCase()) return -1;
-    if (a[propName].toUpperCase() > b[propName].toUpperCase()) return 0;
-  };
-};
-
-function Users() {
-  const list = [
-    { name: "Luna", fat: true },
-    { name: "", fat: true },
-    { name: "", fat: true },
-    { name: null, fat: true },
-    { name: null, fat: false },
-    { name: null, fat: false },
-    { name: "Test", fat: true },
-    { name: "Miou", fat: true },
-    { name: "Mimosa", fat: false },
-    { name: "Elsa", fat: true },
-  ];
-
-  const [sortList, setSortList] = useState(list);
-  const [sortName, setSortName] = useState(false);
-
-  useEffect(() => {
-    const newList = [].concat(sortList);
-    const list = newList.sort(propComparator("name", sortName));
-    setSortList(list);
-  }, [sortName]);
-
-  return (
-    <table>
-      <thead>
-        <tr>
-          <th>
-            name{" "}
-            <button onClick={() => setSortName((prevState) => !prevState)}>
-              sort!
-            </button>
-          </th>
-          <th>fat</th>
-        </tr>
-      </thead>
-      <tbody>
-        {sortList.map((item, index) => {
-          const { name, fat } = item;
-          return (
-            <tr key={index}>
-              <td>{name}</td>
-              <td>{fat ? "true" : "false"}</td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
-  );
 }
