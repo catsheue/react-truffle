@@ -64,3 +64,8 @@ code {
     transform: rotate(360deg);
   }
 }
+
+
+.controlled__label {
+    margin: 0 2rem;
+}
