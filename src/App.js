@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -50,8 +50,7 @@ const ContentWrapper = styled.div`
 `;
 
 const ContentNav = styled.nav`
-  width: 45vw;
-
+  width: 300px;
   ul {
     list-style: none;
     li {
@@ -60,6 +59,7 @@ const ContentNav = styled.nav`
         display: block;
         font-size: 2rem;
         color: #fff;
+        text-decoration: none;
       }
     }
   }
@@ -71,6 +71,7 @@ const Content = styled.div`
 `;
 
 export default function App() {
+  useEffect(() => {}, []);
   return (
     <MainWrapper>
       <Router>
@@ -81,9 +82,6 @@ export default function App() {
           <Title>React Truffle</Title>
 
           <FlexUl>
-            <li>
-              <NavLink to="/">Home</NavLink>
-            </li>
             <li>
               <NavLink to="/github">github</NavLink>
             </li>
