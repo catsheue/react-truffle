@@ -8,12 +8,6 @@ import {
 import { ReactComponent as Logo } from "./styles/svg/logo.svg";
 import styled from "styled-components";
 import FetchTaiwanNews from "./components/FetchTaiwanNews";
-import FetchCheckboxRadioExample from "./components/FetchCheckboxList";
-import RenderCount from "./components/RenderCount";
-import PreviousValue from "./components/PreviousValue";
-import ControlledComponents from "./components/ControlledComponents";
-import Users from "./components/Users";
-
 const Header = styled.header`
   background: #242526;
   color: white;
@@ -41,7 +35,7 @@ const FlexUl = styled.ul`
       display: block;
       padding: 1rem;
       color: white;
-      font-size: 2rem;
+      font-size: 1.6rem;
     }
   }
 `;
@@ -53,11 +47,10 @@ const ContentWrapper = styled.div`
   flex-direction: row;
   background: #18191a;
   color: #fff;
-  font-size: 1.3rem;
 `;
 
 const ContentNav = styled.nav`
-  width: 20vw;
+  width: 45vw;
 
   ul {
     list-style: none;
@@ -65,7 +58,7 @@ const ContentNav = styled.nav`
       a {
         padding: 1rem;
         display: block;
-
+        font-size: 2rem;
         color: #fff;
       }
     }
@@ -75,10 +68,6 @@ const ContentNav = styled.nav`
 const Content = styled.div`
   padding: 1rem;
   min-height: 80vh;
-  width: 80vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 export default function App() {
@@ -110,44 +99,20 @@ export default function App() {
                 <NavLink to="/">Home</NavLink>
               </li>
               <li>
-                <NavLink to="/previousValue">Previous Value</NavLink>
-              </li>
-              <li>
-                <NavLink to="/rendercount">RenderCount by useRef</NavLink>
-              </li>
-              <li>
-                <NavLink to="/checkboxlist">Checkbox list</NavLink>
-              </li>
-              <li>
                 <NavLink to="/fetchTaiwanNews">fetch API by useEffect</NavLink>
               </li>
               <li>
-                <NavLink to="/controlled">Controlled Components</NavLink>
-              </li>
-              <li>
-                <NavLink to="/sort">Users</NavLink>
+                <NavLink to="/users">Users</NavLink>
               </li>
             </ul>
           </ContentNav>
           <Content>
             <Switch>
-              <Route path="/previousValue">
-                <PreviousValue />
-              </Route>
-              <Route path="/rendercount">
-                <RenderCount />
-              </Route>
-              <Route path="/checkboxlist">
-                <FetchCheckboxRadioExample />
-              </Route>
               <Route path="/fetchTaiwanNews">
                 <FetchTaiwanNews />
               </Route>
-              <Route path="/sort">
+              <Route path="/users">
                 <Users />
-              </Route>
-              <Route path="/controlled">
-                <ControlledComponents />
               </Route>
               <Route path="/">
                 <Home />
@@ -162,4 +127,8 @@ export default function App() {
 
 function Home() {
   return <h2>Home</h2>;
+}
+
+function Users() {
+  return <h2>Users</h2>;
 }
