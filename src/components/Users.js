@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { SortButton } from "../library/SortButton";
 
 const propComparator = (propName, bool) => {
   // asc
@@ -61,6 +62,7 @@ export default function Users() {
             <button onClick={() => setSortName((prevState) => !prevState)}>
               sort!
             </button>
+            <SortButton />
           </th>
           <th>fat</th>
         </tr>
