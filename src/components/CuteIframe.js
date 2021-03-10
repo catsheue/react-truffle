@@ -21,30 +21,6 @@ export default function CuteIframe() {
     }
   };
 
-  // useEffect(() => {
-  //   const selection = document.getElementsByTagName("iframe");
-  //   const iframes = Array.prototype.slice.call(selection);
-  //
-  //   if (!ref.current.contentDocument) return;
-  //
-  //
-  //   // ref.current.contentDocument.head.appendChild(style);
-  //
-  //
-  //
-  //   try {
-  //     for (let x in iframes) {
-  //       const style = document.createElement("style");
-  //       const css = `*{ color: red; }`;
-  //       style.appendChild(document.createTextNode(css));
-  //
-  //       iframes[x].contentDocument.head.appendChild(style);
-  //     }
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // }, []);
-
   return (
     <iframe
       title="testit"
