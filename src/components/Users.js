@@ -51,7 +51,7 @@ export default function Users() {
     const newList = [].concat(sortList);
     const list = newList.sort(propComparator("name", sortName));
     setSortList(list);
-  }, [sortName]);
+  }, [sortName, sortList]);
 
   return (
     <table>

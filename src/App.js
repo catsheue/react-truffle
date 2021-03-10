@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -23,6 +23,7 @@ import {
   MainWrapper,
   Title,
 } from "./styles/styleConfig";
+import CuteIframe from "./components/CuteIframe";
 
 const routeList = [
   {
@@ -65,6 +66,11 @@ const routeList = [
     path: "checked",
     text: "Checked",
     componentUsed: Checked,
+  },
+  {
+    path: "iframe",
+    text: "Iframe",
+    componentUsed: CuteIframe,
   },
 ];
 
@@ -125,3 +131,30 @@ export default function App() {
 function Home() {
   return <h2>Home</h2>;
 }
+// const targetNode = document.body;
+// const config = { childList: true, subtree: true };
+//
+// const callback = function (mutationsList, observer) {
+//   for (let mutation of mutationsList) {
+//     if (mutation.type === "childList") {
+//       const selection = document.getElementsByTagName("iframe");
+//       const iframes = Array.prototype.slice.call(selection);
+//       try {
+//         if (iframes.length !== 1) {
+//           for (let x in iframes) {
+//             const style = document.createElement("style");
+//             const css = `*{ color: red; }`;
+//             style.appendChild(document.createTextNode(css));
+//
+//             iframes[x].contentDocument.head.appendChild(style);
+//           }
+//         }
+//       } catch (e) {
+//         console.log(e);
+//       }
+//     }
+//   }
+// };
+//
+// const observer = new MutationObserver(callback);
+// observer.observe(targetNode, config);
