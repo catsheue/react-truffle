@@ -24,6 +24,7 @@ import {
   Title,
 } from "./styles/styleConfig";
 import CuteIframe from "./components/CuteIframe";
+import SelectOptions from "./components/SelectOptions";
 
 const routeList = [
   {
@@ -71,6 +72,11 @@ const routeList = [
     path: "iframe",
     text: "Iframe",
     componentUsed: CuteIframe,
+  },
+  {
+    path: "select",
+    text: "Select",
+    componentUsed: SelectOptions,
   },
 ];
 
