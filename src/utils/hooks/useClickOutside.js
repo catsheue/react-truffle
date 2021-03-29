@@ -1,5 +1,9 @@
 import { useEffect } from "react";
 
+const defaultObj = {};
+
+export default defaultObj;
+
 export function useClickOutside(ref, callback) {
   useEffect(() => {
     function handleClickOutside(event) {
@@ -11,7 +15,5 @@ export function useClickOutside(ref, callback) {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [ref]);
+  }, [ref, callback]);
 }
-
-export default {};

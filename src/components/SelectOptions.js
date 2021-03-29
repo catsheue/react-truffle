@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import styled from "styled-components";
 import { useClickOutside } from "../utils/hooks/useClickOutside";
 
@@ -14,6 +14,10 @@ const ClearValue = styled.span`
   top: 0.2rem;
   font-family: Consolas;
   font-size: 2rem;
+  cursor: pointer;
+  &:hover {
+    color: black;
+  }
 `;
 const Wrapper = styled.div`
   width: 15rem;
@@ -38,31 +42,62 @@ const ListItem = styled.div`
 
 const list = [
   { name: "cuteLuna", id: 1 },
-  { name: "abc", id: 3 },
-  { name: "abc", id: 3 },
-  { name: "abc", id: 3 },
-  { name: "abc", id: 3 },
-  { name: "abc", id: 3 },
-  { name: "miou", id: 4 },
-  { name: "google", id: 5 },
-  { name: "facebook", id: 65 },
+  { name: "abc", id: 2 },
+  { name: "green", id: 3 },
+  { name: "purple", id: 4 },
+  { name: "pink", id: 5 },
+  { name: "yellow", id: 5 },
+  { name: "miou", id: 7 },
+  { name: "google", id: 8 },
+  { name: "amazon", id: 9 },
+  { name: "facebook", id: 10 },
+  { name: "icecream", id: 11 },
+  { name: "bubble", id: 12 },
+  { name: "microsoft", id: 13 },
+  { name: "apple", id: 14 },
+  { name: "strawberry", id: 15 },
+  { name: "banana", id: 16 },
+  { name: "doraemon", id: 17 },
+  { name: "12345", id: 18 },
+  { name: "67890", id: 19 },
+  { name: "euro", id: 20 },
 ];
 
-export default function SelectOptions() {
+export function useSelectBar(callback, deps) {
   const [searchInput, setSearchInput] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const handleClearValue = (e) => {
     e.stopPropagation();
-
     setSearchInput("");
   };
   const wrapper = useRef(null);
-
-  useClickOutside(wrapper, () => {
-    setIsDropdownOpen(false);
-  });
+  const closeCallback = useCallback(() => setIsDropdownOpen(false), []);
+  useClickOutside(wrapper, closeCallback);
   const textInput = useRef(null);
-
+  return {
+    searchInput,
+    setSearchInput,
+    isDropdownOpen,
+    setIsDropdownOpen,
+    handleClearValue,
+    wrapper,
+    useClickOutside,
+    textInput,
+  };
+}
+export default function SelectPanel() {
+  const data = useSelectBar();
+  return <SelectOptions {...data} />;
+}
+export function SelectOptions({
+  wrapper,
+  handleClearValue,
+  setIsDropdownOpen,
+  textInput,
+  searchInput,
+  setSearchInput,
+  isDropdownOpen,
+}) {
   return (
     <Wrapper ref={wrapper}>
       <ClearValue
