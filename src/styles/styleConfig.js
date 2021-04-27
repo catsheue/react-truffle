@@ -8,8 +8,8 @@ export const Header = styled.header`
   align-items: center;
 `;
 export const LogoWrapper = styled.div`
-  width: 5rem;
-  height: 5rem;
+  width: 4rem;
+  height: 4rem;
   display: inline-block;
 `;
 export const Title = styled.h1`
@@ -27,7 +27,8 @@ export const FlexUl = styled.ul`
       display: block;
       padding: 1rem;
       color: white;
-      font-size: 2rem;
+      font-size: 1.5rem;
+      font-family: monospace;
     }
   }
 `;
@@ -49,10 +50,12 @@ export const ContentNav = styled.nav`
     list-style: none;
     li {
       a {
-        padding: 1rem;
         display: block;
-
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+        font-family: monospace;
         color: #fff;
+        border-bottom: 1px dotted gray;
       }
     }
   }

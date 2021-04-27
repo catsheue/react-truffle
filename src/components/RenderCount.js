@@ -11,7 +11,7 @@ export default function RenderCount() {
   });
 
   return (
-    <>
+    <div>
       <input
         type="text"
         value={name}
@@ -19,6 +19,6 @@ export default function RenderCount() {
       />
       <div>My name is {name}</div>
       <div>I rendered {renderCount.current}</div>
-    </>
+    </div>
   );
 }
