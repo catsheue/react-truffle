@@ -24,6 +24,7 @@ import {
   Title,
 } from "./styles/styleConfig";
 import HighChartContainer from "./components/HighChartContainer";
+import NivoContainer from "./components/NivoContainer";
 
 const routeList = [
   {
@@ -68,9 +69,14 @@ const routeList = [
     componentUsed: CuteIframe,
   },
   {
-    path: "HighChart",
+    path: "highchart",
     text: "HighChart",
     componentUsed: HighChartContainer,
+  },
+  {
+    path: "nivo",
+    text: "Nivo Line",
+    componentUsed: NivoContainer,
   },
 ];
 
