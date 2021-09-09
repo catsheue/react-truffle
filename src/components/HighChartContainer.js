@@ -27,6 +27,7 @@ const options = {
 };
 const ChartWrapper = styled.div`
   width: 51rem;
+
   background: pink;
 `;
 export default function HighChartContainer() {
