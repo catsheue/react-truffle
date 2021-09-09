@@ -3,9 +3,10 @@ import styled from "styled-components";
 export const Header = styled.header`
   background: #242526;
   color: white;
-  padding: 1rem;
+  padding: 0 1rem;
   display: flex;
   align-items: center;
+  height: 10vh;
 `;
 export const LogoWrapper = styled.div`
   width: 4rem;
@@ -41,6 +42,7 @@ export const ContentWrapper = styled.div`
   background: #18191a;
   color: #fff;
   font-size: 1.3rem;
+  height: 90vh;
 `;
 
 export const ContentNav = styled.nav`
@@ -66,6 +68,8 @@ export const Content = styled.div`
   min-height: 80vh;
   width: 80vw;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  //background: gray;
+  //backdrop-filter: blur();
+  //align-items: center;
+  //justify-content: center;
 `;
