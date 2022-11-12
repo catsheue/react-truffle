@@ -18,6 +18,7 @@ export default function PreviousValue() {
         onChange={(e) => setName(e.target.value)}
       />
       <div>My name is {name}</div>
+
       <div>I rendered {prevName.current}</div>
     </>
   );
